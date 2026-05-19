@@ -1,26 +1,27 @@
 package org.notification_service;
 
 import org.junit.jupiter.api.Test;
+
 import org.mockito.ArgumentCaptor;
 
-import org.notification_service.service.EmailService;
 
+import org.notification_service.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import org.testcontainers.containers.KafkaContainer;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.testcontainers.kafka.KafkaContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @Testcontainers
@@ -35,7 +36,7 @@ public class EmailServiceIntegrationTest {
     @Autowired
     private JavaMailSender mailSender;
 
-    @MockBean
+    @MockitoBean
     private JavaMailSender mockMailSender;
 
     @Test

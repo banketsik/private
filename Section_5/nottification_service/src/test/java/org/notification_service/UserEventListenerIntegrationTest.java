@@ -1,23 +1,18 @@
 package org.notification_service;
 
 import org.junit.jupiter.api.Test;
-
 import org.notification_service.event.UserEvent;
 import org.notification_service.service.EmailService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
-
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.time.LocalDateTime;
 
-
-
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
@@ -26,7 +21,7 @@ public class UserEventListenerIntegrationTest {
     @Autowired
     private KafkaTemplate<String, UserEvent> kafkaTemplate;
 
-    @MockBean
+    @MockitoBean
     private EmailService emailService;
 
     @Test
